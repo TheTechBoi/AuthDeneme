@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, TextInput, KeyboardAvoidingView, Image, TouchableOpacity} from 'react-native';
+import { Text,TextInput, StyleSheet, View,  KeyboardAvoidingView, Image, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import * as firebase from 'firebase';
-
-
+import auth from '@react-native-firebase/auth';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error_message, setError] = useState("");
 
-  const loginHandle = () => {
-        firebase.auth().signInWithEmailAndPassword(email, password).catch(error => setError(error.message));
-  }
+  const loginHandle = () => {
+    auth().signInWithEmailAndPassword(email, password).catch((e)=>setError(e.message));
+  };
+
+  /*async function loginHandle() {
+    try {
+      await auth().signInWithEmailAndPassword(email, password);
+    } catch (e) {
+      console.error(e.message);
+    }
+  }*/
+  
+
     return (
     <ScrollView>
     <KeyboardAvoidingView behavior="padding" style={styles.containerN}>
@@ -49,7 +57,7 @@ const LoginScreen = ({navigation}) => {
           style={styles.T_Input} />
 
       
-      <TouchableOpacity style={styles.text_container} onPressIn={loginHandle()}>
+      <TouchableOpacity style={styles.text_container} onPress={console.log('yeter')}>
         <Text style={styles.button_text}>Login</Text>
       </TouchableOpacity>
   

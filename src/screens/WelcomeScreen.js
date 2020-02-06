@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
-import * as firebase from 'firebase';
+import auth from '@react-native-firebase/auth';
 
 
-const HomeScreen = () => {
+const WelcomeScreen = () => {
 
   const SignOut = () => {
-      firebase.auth().signOut();
+    auth().signOut();
   };
 
 
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeScreen;
+export default WelcomeScreen;

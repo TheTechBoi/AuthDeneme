@@ -1,10 +1,29 @@
-import React, { useEffect } from 'react';
-import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
-import * as firebase from 'firebase';
+import React, { useEffect, useState } from 'react';
+import { Text, StyleSheet, View,} from 'react-native';
+import auth from '@react-native-firebase/auth';
+
 
 const HomeScreen = ({ navigation: { navigate }}) => {
+    // Set an initializing state whilst Firebase connects
+    const [initializing, setInitializing] = useState(true);
+    const [userr, setUser] = useState(false);
+   
+    // Handle user state changes
+    async function onAuthStateChanged(user) {
+      setUser(user);
+      if (initializing) setInitializing(false);
+    }
+   
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      
+      navigate(userr ? "App" : "Auth");
+      console.log(userr)
+      return subscriber; // unsubscribe on unmount
+      
 
-  useEffect(() => firebase.auth().onAuthStateChanged(user => navigate(user ? "App" : "Auth")),[]);
+    }, []);
+
 
   return(
     <View style={styles.container}>

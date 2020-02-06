@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TextInput, KeyboardAvoidingView, Image, TouchableOpacity} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import * as firebase from 'firebase';
+import auth from '@react-native-firebase/auth';
 
 
 const SignUpScreen = ({navigation}) => {
@@ -10,13 +10,17 @@ const SignUpScreen = ({navigation}) => {
   const [name, setName] = useState('');
   const [error_message, setError] = useState("");
 
-
-  const registerHandle = () => {
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(userCredentials => {
-      return userCredentials.user.updateProfile({ displayName: name })
-    }).catch(error => setError(error.message));
-  
+const registerHandle = () => {
+  auth().createUserWithEmailAndPassword(email, password).catch((e)=>setError(e.message));
+};
+/*
+async function registerHandle() {
+  try {
+    await auth().createUserWithEmailAndPassword(email, password);
+  } catch (e) {
+    console.error(e.message);
   }
+}*/
 
   return (
     <ScrollView>
@@ -30,6 +34,8 @@ const SignUpScreen = ({navigation}) => {
       </View>
     
       <View style={styles.container}>
+
+  <Text style={styles.error_text}>{error_message}</Text>
 
       < TextInput 
           placeholder='name'
@@ -69,7 +75,7 @@ const SignUpScreen = ({navigation}) => {
       </View>
     
       <TouchableOpacity onPress ={() => navigation.navigate('Login')} style={styles.login_button} >
-      <Text style={styles.login_button_text}>Sign Up</Text>
+      <Text style={styles.login_button_text}>Login</Text>
       </TouchableOpacity>
     
     </KeyboardAvoidingView>
@@ -94,6 +100,12 @@ const styles = StyleSheet.create({
   }
   ,container: {
     padding: 20
+    
+  },
+  error_text: {
+    padding: 5,
+    textAlign: 'center',
+    color: '#E83E0C'
     
   },
   T_Input: {
