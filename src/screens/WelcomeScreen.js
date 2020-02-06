@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
     <View style={styles.container}>
       <Text style={styles.text}>Welcome</Text>
 
-      <TouchableOpacity style={styles.sign_button} onPress={SignOut()}>
+      <TouchableOpacity style={styles.sign_button} onPress={()=>SignOut()}>
         <Text style={styles.sign_button_text}>Logout</Text>
         </TouchableOpacity>
     </View>

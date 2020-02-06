@@ -57,7 +57,7 @@ const LoginScreen = ({navigation}) => {
           style={styles.T_Input} />
 
       
-      <TouchableOpacity style={styles.text_container} onPress={console.log('yeter')}>
+      <TouchableOpacity style={styles.text_container} onPress={() => loginHandle()}>
         <Text style={styles.button_text}>Login</Text>
       </TouchableOpacity>
   

@@ -5,25 +5,16 @@ import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({ navigation: { navigate }}) => {
     // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [userr, setUser] = useState(false);
    
     // Handle user state changes
-    async function onAuthStateChanged(user) {
-      setUser(user);
-      if (initializing) setInitializing(false);
-    }
+
    
     useEffect(() => {
-      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-      
-      navigate(userr ? "App" : "Auth");
-      console.log(userr)
-      return subscriber; // unsubscribe on unmount
-      
+      auth().onAuthStateChanged((user) => {
+        navigate(user ? "App" : "Auth")
 
-    }, []);
-
+    }); }, []);
+  
 
   return(
     <View style={styles.container}>

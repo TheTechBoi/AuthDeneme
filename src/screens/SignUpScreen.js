@@ -68,7 +68,7 @@ async function registerHandle() {
           value={password}
 />
 
-      <TouchableOpacity style={styles.text_container} onPress={registerHandle()}>
+      <TouchableOpacity style={styles.text_container} onPress={() => registerHandle()}>
         <Text style={styles.button_text}>SignIn</Text>
       </TouchableOpacity>
   
