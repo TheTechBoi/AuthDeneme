@@ -4,10 +4,11 @@ import HomeScreen from './src/screens/HomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
-
+import BespokeScreen from './src/screens/BespokeScreen';
 
 const AppStack = createStackNavigator({
-  Welcome: WelcomeScreen
+  Welcome: WelcomeScreen,
+  Bespoke: BespokeScreen
 })
 
 const AuthStack = createStackNavigator({

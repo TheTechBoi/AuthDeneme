@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View,} from 'react-native';
 import auth from '@react-native-firebase/auth';
-
+ 
 
 const HomeScreen = ({ navigation: { navigate }}) => {
     // Set an initializing state whilst Firebase connects
